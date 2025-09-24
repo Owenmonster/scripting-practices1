@@ -1,0 +1,6 @@
+//edit a cube
+polyCube -w 3 -h 15 -d 13 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+move -7 90 
+select pCube3;  
+select -r pCube1 ;
+move -r 0 0 4.916135 
