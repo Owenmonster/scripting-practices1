@@ -1,0 +1,99 @@
+CreatePolygonCube; 
+polyCube -w 1 -h 1 -d 1 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1; 
+// Result: pCube1 polyCube1 
+
+ 
+polyCube -w 7 -h 10 -d 3 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1; 
+// Result: pCube1 polyCube1; 
+// Result: pCube2 polyCube2 
+
+ 
+select -r pCube1 ; 
+polyCube -w 5 -h 15 -d 13 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1; 
+// Result: pCube3 polyCube3 
+
+ 
+setAttr "pCube4.rotateY" 90; 
+select -r pCube2 ; 
+scale -r 1 1 2.456458 ; 
+select -r pCube3 ; 
+scale -r 1 1 1.808042 ; 
+select -r pCube4 ; 
+scale -r 1 1 1.704649 ; 
+select -cl  ; 
+
+ 
+duplicate -rr; 
+// Result: pCube5 //; 
+
+ 
+// Result: pCube5 
+scale -r 1 0.365752 1 ; 
+
+ 
+// Get everything selected 
+string $sel[] = `ls -sl`; 
+// Create out loop 
+for ($each in $sel) { 
+    // do something - use $each to identify objects 
+    select $each; 
+    move -relative 0 1 0; 
+} 
+
+
+select -r pCube5 ; 
+move -r 0 5.207877 0 ; 
+
+
+select -r pCube5 ; 
+scale -r 1 0.349559 1 ; 
+
+
+select -r pCube5 ; 
+scale -r 1 0.349559 1 ; 
+
+
+select -r pCube5 ; 
+duplicate -rr; 
+// Result: pCube6 // 
+
+
+select -r pCube6 ; 
+move -r 0 -13.055464 0 ; 
+
+
+select -r pCube5.f[3] ; 
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 6.830637483 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube5.f[3]; 
+// Result: polyExtrudeFace1 
+
+
+// Result: polyExtrudeFace3 
+setAttr "polyExtrudeFace3.localScale" -type double3 1 0.718068 1 ; 
+setAttr "polyExtrudeFace3.localScale" -type double3 0.675785 0.718068 1 ; 
+
+
+// Result: polyExtrudeFace3 
+setAttr "polyExtrudeFace3.localScale" -type double3 1 0.718068 1 ; 
+setAttr "polyExtrudeFace3.localScale" -type double3 0.675785 0.718068 1 ; 
+setAttr "polyExtrudeFace3.localTranslate" -type double3 0 0 0.957422 ; 
+setAttr "polyExtrudeFace3.localScale" -type double3 0.675785 0.682652 1 ; 
+setAttr "polyExtrudeFace3.localScale" -type double3 0.680472 0.682652 1 ; 
+
+
+select -r pCube3.f[1] ; 
+select -tgl pCube4.f[1] ; 
+select -r pCube3.f[1] pCube4.f[1] ; 
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 8.171157262 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube3.f[1]; 
+// Result: polyExtrudeFace4 
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 8.171157262 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube4.f[1]; 
+// Result: polyExtrudeFace5 
+
+
+select -tgl pCube3.f[1] ; 
+select -r pCube4.f[1] pCube3.f[1] ; 
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 8.171158174 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube4.f[1]; 
+// Result: polyExtrudeFace6 
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 8.171158174 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube3.f[1]; 
+// Result: polyExtrudeFace7 
+setAttr "polyExtrudeFace7.localTranslate" -type double3 0 0 0.488269 ; 
+setAttr "polyExtrudeFace6.localTranslate" -type double3 0 0 0.488269 ; 
