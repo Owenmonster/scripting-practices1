@@ -1,0 +1,36 @@
+Define a String/creating a variable 
+string $cube = "testcube"; 
+
+Arry is a list for maya, to create an arry [] at the end at the line, the list starts with 0 
+string $staff[] = {"Peter","Rob","Jason"}; 
+// Result: Peter Rob Jason 
+Print Rob = Print “1” 
+
+Code example 
+string $staff[] = {"Peter","Rob","Jason"}; 
+print $staff[1]; 
+
+Code example for testcube 
+string $testcube[] = `polyCube -name "testcube"`; 
+print $testcube[0]; 
+move 0 3 0 -r $testcube[0]; 
+
+Coding star sign means times, instead of x 
+int $two = 2; 
+int $calc = $two * 10; 
+print $calc; 
+
+Ls is all objects and election is sl for this –r is relative  
+string $sel[] = `ls -sl`; 
+move -r 0 2 0 $sel; 
+
+
+
+setAttr "standardSurface1.baseColor" -type double3 0.1768 0.185386 0.4 ;  
+Above is a command to change the mesh to a shade of blue 
+
+setAttr "standardSurface1.baseColor" -type double3 0.422 0.06752 0.073552 ; 
+Above is a command to change the mesh to a shade of red, along with (1 0 0, in the number place) 
+
+
+polyCylinder -r 10 -name "cyinder"; 
