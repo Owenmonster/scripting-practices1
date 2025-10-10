@@ -1,0 +1,6 @@
+help window;
+
+window -widthHeight 300 500 
+       -title "GTPhelpTool"
+       -visible on
+       myWindow;
