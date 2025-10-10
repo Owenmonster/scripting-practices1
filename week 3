@@ -1,0 +1,22 @@
+This is the test emanple i used and edited, which made errors for me
+
+//Basis UI Example: GTP Test UI 
+global string GTPrestUI[]; 
+
+//OPTIONAL: Delete any existing window with this name 
+if (`window -exists GTPtestUI1){ 
+    deleteUI -window GTPtestUI; 
+} 
+
+//Define a Procedure for "createCube" 
+global proc createCube() { 
+    //createCube 
+    global string $testCube[]; //Access the global variable 
+    $testCube = `polyCube - name "testCube"`; 
+} 
+
+//Build the window 
+window - title "GTP Test UI" -widthHeight 200 100 GTPtestUI; 
+columnlayout adjustableColumn true - rowSpacing10; 
+button-label "create Cube" -commans "createCube()"; 
+setParent..; 
