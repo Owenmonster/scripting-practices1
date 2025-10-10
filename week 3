@@ -20,3 +20,28 @@ window - title "GTP Test UI" -widthHeight 200 100 GTPtestUI;
 columnlayout adjustableColumn true - rowSpacing10; 
 button-label "create Cube" -commans "createCube()"; 
 setParent..; 
+
+
+the second one i tried is this
+string $toolCreate = "createTool";
+string $toolName = "GTP UI Tool";
+
+if ( `window -exists $toolCreate` )
+{
+    
+    deleteUI $toolCreate;
+    
+}
+
+window; -t $toolName -w 500 -h 200 $toolCreat;
+
+showWindow $toolCreate;
+which gave me an Error, // Error: Line 11.9: Syntax error
+
+after some researching i found a secqueces that helped
+help window;
+
+window -widthHeight 300 500 
+       -title "GTPhelpTool"
+       -visible on
+       myWindow;
