@@ -1,0 +1,13 @@
+//rotatr all selected objects a random amout
+string $selected[] = `ls -sl`;
+
+// Loop through each selected object
+for ($obj in $selected) {
+    // Generate random rotation values for X, Y, and Z axes
+    float $rx = `rand -180 180`;
+    float $ry = `rand -180 180`;
+    float $rz = `rand -180 180`;
+
+    // Apply the random rotation to the object
+    rotate -r $rx $ry $rz $obj;
+}
