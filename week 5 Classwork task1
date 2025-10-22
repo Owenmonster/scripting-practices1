@@ -1,0 +1,17 @@
+polyCube -w 1 -h 1 -d 1;
+polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+rename "pCube1" "Dave";
+rename "pSphere1" "Alice";
+
+//Dave
+move 2 2 2 "Dave";
+
+//Alice
+move -r 0 1 0 "Alice";
+
+//select Dave and ALice and make a group called Frineds
+select "Dave" "Alice";
+$newGroup = `group -name "friends"`; 
+
+//rotate friends 90%
+rotate -r 0 0 90 "friends";
