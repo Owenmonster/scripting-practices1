@@ -6,14 +6,16 @@ window -widthHeight 300 500
        myWindow;
 
 
-//my scprit
-//my name
-//verison
+Script Name: GTP help tool (GTPhelpTool) 
+Author: Owen Goldthorpe 
+Version: version1 (my first UI) 
 
-//move the objects (Must)
+Variables: current variable, I could think off is researching what commands I need to make sure it works, I also have considered the possibility it not working, so I plan break it down and go through it one step at a time so if anything, is not working I can come back to it when I understand the issue and know how to solve it 
 
-//make it a group (could)
+ 
 
-//color the objects (must(secondary))
+Must do this thing: It must be able to move the objects into position and be able to color them. With the color being more secondary compared to moving the objects into place. 
 
-//other ideas
+Should do this thing: It should be able to recognize the different objects and have a set place and order to make the complete model
+
+Could do this thing: what it could do, but I’m leaving for a later date is to have an animation of sorts. I would like to have an animation, but that can come later. 
