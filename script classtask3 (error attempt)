@@ -1,0 +1,15 @@
+//Define the array of object types
+string $objectTypes[] = {"Cube", "Sphere", "Cylinder"};
+//get the size of arry
+int $arraySize = size($objectTypes
+//choose a random index 
+int $randomIndex = rand(0, 2);
+//use the random index to choose an item
+string $choseObject = $objectTypes{$randomeIndex};
+//use the chose item t0 create
+if ($chosenObject == "Cube") {
+    polyCube;
+} else if ($chosenObject == "Sphere") {
+    polySphere;
+} else if ($chosenObject == "Cylinder") {
+    polyCylinder;
