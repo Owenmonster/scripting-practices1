@@ -1,0 +1,28 @@
+if (`window -exists "gtpHelpWindow"`) {
+    deleteUI "gtpHelpWindow";
+}
+
+window -widthHeight 300 500 
+       -title "GTPhelpUI"
+       -visible on
+       gtpHelpWindow;
+    
+string $form = `formLayout`;       
+string $tabs = `tabLayout -innerMarginWidth 5 -innerMarginHeight 5`;
+formLayout -edit
+    -attachForm $tabs "top" 0
+    -attachForm $tabs "left" 0
+    -attachForm $tabs "bottom" 0
+    -attachForm $tabs "right" 0
+$form;
+
+string $child1 = `rowColumnLayout -numberOfColumns 1`;
+    button -label "Button1" -command "print \"TEST\"";
+    button -label "Button2" -command polyCube; 
+    button -label "Button3" -command "print \"GAMES\"";
+    setParent ..;
+    
+tabLayout -edit
+    -tabLabel $child1 "Model"
+    $tabs;
+showWindow;
