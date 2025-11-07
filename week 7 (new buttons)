@@ -1,0 +1,36 @@
+//button 1
+CreatePolygonCube;
+scale -r 1 10 1 ;
+move -r 0 0 0 pCube1.scalePivot pCube1.rotatePivot ;
+rename "pCube1" "Blade";
+move 2 2 2;
+//button 2
+CreatePolygonCube;
+scale -r 7 1 1 ;
+move -r 0 0 0 pCube2.scalePivot pCube2.rotatePivot ;
+rename "pCube2" "Guard";
+move 4 4 4;
+//button 3
+CreatePolygonCube;
+scale -r 1 5 1 ;
+move -r 0 0 0 pCube3.scalePivot pCube3.rotatePivot ;
+rename "pCube3" "Hilt";
+move 6 6 6;
+//button 4
+move 0 3 0 "Blade";
+move 0 2 0 "Guard";
+move 0 1 0 "Hilt";
+polyUnite -ch 1 -mergeUVSets 1 -centerPivot -name Hilt Hilt Guard Blade;
+doGroup 0 1 1;
+//button 5
+setAttr "openPBR_shader1.baseColor" -type double3 0.3123 0.3063 0 ;
+
+shadingNode -asShader lambert;
+// Result: lambert2
+sets -renderable true -noSurfaceShader true -empty -name lambert2SG;
+// Result: lambert2SG
+connectAttr -f lambert2.outColor lambert2SG.surfaceShader;
+// Result: Connected lambert2.outColor to lambert2SG.surfaceShader.
+assignCreatedShader "lambert" "" lambert2 "pCube1";
+// Created shader lambert and assigned to the selected objects. //
+setAttr "lambert2.color" -type double3 0.3123 0.3063 0 ;
