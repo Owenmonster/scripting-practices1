@@ -35,22 +35,54 @@ global proc createGuard() {
     polySplit -ch 1 -sma 180 -ep 4 0.501551 -ep 8 0.498449 -ep 9 0.498449 -ep 5 0.501551 -ep 4 0.501551 |Guard|GuardShape;  select -cl;
     select -r Guard.vtx[8:11] ;
     scale -r -p 0cm 2.001551cm 0cm 1.244444 1 1 ;
+    select -r Guard ;
+    scale -r 1 1 1.301965 ;
 }
 
 global proc createHilt() {
     CreatePolygonCube;
     scale -r 1 3 1;
     rename "pCube1" "Hilt";
-    move 0 10 0;
+    move 0 0 0;
+    select -r Hilt ;
+    scale -r 1.126899 1 1.126899 ;
 }
 
+// shader
 global proc applyShader() {
-    polyUnite -ch 1 - mergeUVSets 1 -centerPivot -name Hilt Hilt guard Blade:
-    doGroup 0 1 1;
-    setAttr "openPBR_shader1.baseColor" -type double3 0.3123 0.3063 0;
-    shadingNode -asShader lambert;
-    set -renderable true -noSurfaceShader true -empty -name lambert25G;
-    connectAttr -f lambert1 lambert2 "pCube1";
-    sets -e -forceElement lambert25G;
-    setAttr "lambert2.color" -type double3 0.3123 0.3063 0;
+    shadingNode -asShader lambert -name "myLambert";
+sets -renderable true -noSurfaceShader true -empty -name "myLambertSG";
+connectAttr -f "myLambert.outColor" "myLambertSG.surfaceShader";
+
+
+select "Blade";
+sets -e -forceElement "myLambertSG";
+
+
+setAttr "myLambert.color" -type double3 0.535 0.535 0.535 ;
+
+
+shadingNode -asShader lambert -name "myLambert1";
+sets -renderable true -noSurfaceShader true -empty -name "myLambertSG1";
+connectAttr -f "myLambert1.outColor" "myLambertSG1.surfaceShader";
+
+select "Guard";
+sets -e -forceElement "myLambertSG1";
+
+setAttr "myLambert1.color" -type double3 2.708 2.283205 0 ;
+
+
+shadingNode -asShader lambert -name "myLambert2";
+sets -renderable true -noSurfaceShader true -empty -name "myLambertSG2";
+connectAttr -f "myLambert2.outColor" "myLambertSG2.surfaceShader";
+
+select "Hilt";
+sets -e -forceElement "myLambertSG2";
+
+setAttr "myLambert2.color" -type double3 0 0 0;
+
+
+select -r Blade Hilt Guard ;
+doGroup 0 1 1;
+rename "group1" "Sword";
 }
