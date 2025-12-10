@@ -10,20 +10,29 @@ tabLayout myTabs;
 //First Tab
 columnLayout tab1;
 
-text -label "This is the Blade tab.";
+text -label "This is the Blade tab. This is where you will create the blade for your sword";
+text -label "You may only select one Blade type";
 button -label "Create Blade" -command "createBlade()";
 setParent ..; 
 
 //Second Tab
 columnLayout tab2;
-text -label "This is the Guard tab.";
+text -label "This is the Guard tab. This is where you will create the guard for your sword";
+text -label "You may only select one Guard type";
 button -label "Create Guard" -command "createGuard()";
 setParent ..;
 
 //Third Tab
 columnLayout tab3;
-text -label "This is the Hilt tab.";
+text -label "This is the Hilt tab. This is where you will create the hilt for your sword";
+text -label "You may only select one Hilt type";
 button -label "Create Hilt" -command "createHilt()";
+setParent ..;
+
+//Fourth Tab
+columnLayout tab4;
+text -label "This is the Shader tab. This is where you will slecet the colours for your sword";
+button -label "Apply Shader" -command "applyShader()";
 setParent ..;
 
 //Set tab labels
@@ -31,6 +40,7 @@ tabLayout -edit
     -tabLabel tab1 "Blade"
     -tabLabel tab2 "Guard"
     -tabLabel tab3 "Hilt"
+    -tabLabel tab4 "Shader"
     myTabs;
 
 
@@ -39,6 +49,7 @@ columnLayout;
 
 //Create buttons for each section of the script
 button -label "Create Blade" -command "createBlade()";
+button -label "Create Blade2" -command "createBladeAlt()";
 button -label "Create Guard" -command "createGuard()";
 button -label "Create Hilt" -command "createHilt()";
 button -label "Apply Shader" -command "applyShader()";
@@ -55,6 +66,22 @@ global proc createBlade() {
     polySplit -ch 1 -sma 180 -ep 0 0.505771 -ep 1 0.505771 -ep 2 0.505771 -ep 3 0.505771 -ep 0 0.505771 |Blade|BladeShape;  select -cl;
     select -r Blade.vtx[9:10] ;
     move -r 0 1.106371 0 ;
+    polySplit -ch 1 -sma 180 -ep 4 0.812618 -ep 8 0.187382 -ep 9 0.187382 -ep 5 0.812618 -ep 4 0.812618 |Blade|BladeShape;  select -cl;
+
+}
+
+global proc createBladeAlt() {
+    CreatePolygonCube;
+    scale -r 1 10 1;
+    rename "pCube1" "Blade";
+    move 0 4 0;
+    select -r Blade.vtx[2:5] ;
+    scale -r -p 0cm 9cm 0cm 3.938805 1 1 ;
+    polySplit -ch 1 -sma 180 -ep 4 0.826695 -ep 8 0.173305 -ep 9 0.173305 -ep 5 0.826695 -ep 4 0.826695 |Blade|BladeShape;  select -cl;
+    select -r Blade.vtx[8:11] ;
+    move -r -0.892337 0 0 ;
+
+
 }
 
 global proc createGuard() {
