@@ -17,6 +17,11 @@ text -label "This Blade is a straight and poineded edge blade";
 button -label "Create Blade2" -command "createBladeAlt()";
 text -label "This Blade is a blade simular to the blades from God of War";
 button -label "Create Blade3" -command "createBladeOther()";
+text -label "This Blade resembles a spinning cone, to make a rapier";
+button -label "Create Blade4" -command "createBladeGreat()";
+text -label "This Blade is a great sword blade ";
+button -label "Create Blade5" -command "createBladeSingle()";
+text -label "This Blade is a Katana blade ";
 setParent ..; 
 
 //Second Tab
@@ -27,6 +32,7 @@ button -label "Create Guard" -command "createGuard()";
 text -label "This Guard is a basic and fault knightly style guard";
 button -label "Create Guard2" -command "createGuardAlt()";
 text -label "This Guard is a more curved then the first and simular to a half circle";
+button -label "Create Guard3" -command "createGuardOther()";
 setParent ..;
 
 //Third Tab
@@ -37,6 +43,8 @@ button -label "Create Hilt" -command "createHilt()";
 text -label "This Hilt is just a default cube jut scaled up";
 button -label "Create Hilt2" -command "createHiltAlt()";
 text -label "This Hilt is simular to the first but only with a sword pommel";
+button -label "Create Hilt3" -command "createHiltOther()";
+text -label "This Hilt is as a cyclinder base";
 setParent ..;
 
 //Fourth Tab
@@ -61,10 +69,14 @@ columnLayout;
 button -label "Create Blade" -command "createBlade()";
 button -label "Create Blade2" -command "createBladeAlt()";
 button -label "Create Blade3" -command "createBladeOther()";
+button -label "Create Blade4" -command "createBladeGreat()";
+button -label "Create Blade5" -command "createBladeSingle()";
 button -label "Create Guard" -command "createGuard()";
 button -label "Create Guard2" -command "createGuardAlt()";
+button -label "Create Guard3" -command "createGuardOther()";
 button -label "Create Hilt" -command "createHilt()";
 button -label "Create Hilt2" -command "createHiltAlt()";
+button -label "Create Hilt3" -command "createHiltOther()";
 button -label "Apply Shader" -command "applyShader()";
 
 //Show the Window
@@ -118,6 +130,31 @@ move 0 6 0;
 }
 
 
+global proc createBladeGreat() {
+    CreatePolygonCube;
+    scale -r 3 15 1;
+    rename "pCube1" "Blade";
+    move 0 9 0;
+    polySplit -ch 1 -sma 180 -ep 0 0.505771 -ep 1 0.505771 -ep 2 0.505771 -ep 3 0.505771 -ep 0 0.505771 |Blade|BladeShape;  select -cl;
+    select -r Blade.vtx[9:10] ;
+    move -r 0 1.106371 0 ;
+    polySplit -ch 1 -sma 180 -ep 4 0.812618 -ep 8 0.187382 -ep 9 0.187382 -ep 5 0.812618 -ep 4 0.812618 |Blade|BladeShape;  select -cl;
+}
+
+global proc createBladeSingle() {
+       CreatePolygonCube;
+       scale -r 1 15 1;
+       rename "pCube1" "Blade";
+       move 0 6 0;
+       polySplit -ch 1 -sma 180 -ep 4 0.890413 -ep 8 0.109587 -ep 9 0.109587 -ep 5 0.890413 -ep 4 0.890413 |Blade|BladeShape;  select -cl;
+       select -r Blade.vtx[2] Blade.vtx[4] ;
+       move -r 0 -0.367701 0 ;
+       move -r 0.283678 0 0 ;
+       move -r 0 -0.195732 0 ;
+       move -r 0.0210142 0 0 ;
+
+}
+
 global proc createGuard() {
     CreatePolygonCube;
     scale -r 5 1 1;
@@ -148,6 +185,13 @@ global proc createGuardAlt() {
     scale -r 1 1 1.228523 ;    
 }
 
+global proc createGuardOther() {
+    CreatePolygonSphere;
+    scale -r 2 0.2 2 ;
+    rename "pSphere1" "Guard";
+    move -r 0 1 0 ;
+}
+
 global proc createHilt() {
     CreatePolygonCube;
     scale -r 1 3 1;
@@ -171,6 +215,15 @@ global proc createHiltAlt() {
 // Result: polyExtrudeFace1
 setAttr "polyExtrudeFace1.localTranslate" -type double3 0 0 0.202763 ;
 }
+
+global proc createHiltOther() {
+    CreatePolygonCylinder;
+    scale -r 0.75 3 0.7;
+    rename "pCylinder1" "Hilt";
+    move 0 -2 0;
+}
+
+
 
 //shader
 global proc applyShader() {
@@ -199,7 +252,3 @@ select -r Blade Hilt Guard ;
 doGroup 0 1 1;
 rename "group1" "Sword";
 }
-
-
-//Add Greatsword blade
-//Add Katana blade
